@@ -15,7 +15,9 @@ import Billinggdata from "./components/billing/billinggdata";
 import Electric_material from "./components/electric/electric_material";
  import Dashboard from "./components/dashbord/indexs";
 import LandingPage from "./components/landingpage";
- 
+
+import Chatbox from "./components/chatbox";
+
 export const appRoutes = [
   { path: "/", element: <HomeView /> },
   { path: "/signin", element: <SignInView /> },
@@ -33,7 +35,7 @@ export const appRoutes = [
   { path: "/product/detail", element: <ProductDetailView /> },
   { path: "/star/zone", element: <StarZoneView /> },
   { path: "/documentation", element: <DocumentationView /> },
- 
+  { path: "/chatbox", element: <Chatbox /> },
   { path: "/landing", element: <LandingPage /> },
  
   { path: "*",  element: <HomeView  /> }// Catch-all for undefined routes

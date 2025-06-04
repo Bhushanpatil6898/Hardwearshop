@@ -13,6 +13,7 @@ import SignInView from "./views/account/SignIn";
 import SignUpView from "./views/account/SignUp";
 import LandingPage from "./components/landingpage";
 import { OrbitProgress } from "react-loading-indicators";
+import SmartTalkIcon from "./components/SmartTalkIcon";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -48,6 +49,7 @@ function App() {
           <>
             <Header />
             <TopMenu />
+           
           </>
         )}
         <Suspense fallback={<div className="text-white text-center mt-3">Loading...</div>}>

@@ -4,6 +4,8 @@ import logo from '../../src/images/mylogo1.png'
 import background from '../../src/images/back.avif'
 import useAdmin from "../hooks/useUser";
 import { useSelector } from "react-redux";
+import SmartTalkIcon from "./SmartTalkIcon";
+
 const Search = lazy(() => import("./Search"));
 
 const Header = () => {
@@ -64,6 +66,7 @@ const Header = () => {
                  {NotificationData.length}
                 </div>
                 </Link>
+                
               <ul className="dropdown-menu">
                 <li>
                   <Link className="dropdown-item" to="/account/profile">
@@ -113,7 +116,11 @@ const Header = () => {
             </div>
             {/* <Link to="/account/signin">Sign In</Link> |{" "}
               <Link to="/account/signup"> Sign Up</Link> */}
+               <div className="tolkicon">
+                <SmartTalkIcon />
+              </div>
           </div>
+          
         </div>
       </div>
     </header>
