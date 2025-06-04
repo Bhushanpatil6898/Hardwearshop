@@ -88,7 +88,7 @@ const HomeView = () => {
           </div>
           <div className="col-md-3">
             {/* <CardLogin className="mb-3" /> */}
-            <CardImage src="../../images/category/pana.jpg" to="promo" />
+            <CardImage src="../../images/category/paint.jpg" to="promo" />
           </div>
         </div>
       </div>
