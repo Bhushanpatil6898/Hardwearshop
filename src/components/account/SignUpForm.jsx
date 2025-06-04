@@ -1,226 +1,204 @@
-import { Field, reduxForm } from "redux-form";
-import { compose } from "redux";
-import { Form, Link } from "react-router-dom";
-import renderFormGroupField from "../../helpers/renderFormGroupField";
-import renderFormField from "../../helpers/renderFormField";
-import {
-  required,
-  maxLength20,
-  minLength8,
-  maxLengthMobileNo,
-  minLengthMobileNo,
-  digit,
-  name,
-} from "../../helpers/validation";
-import { ReactComponent as IconPhone } from "bootstrap-icons/icons/phone.svg";
-import { ReactComponent as IconShieldLock } from "bootstrap-icons/icons/shield-lock.svg";
-import { ReactComponent as IconEmail } from "bootstrap-icons/icons/envelope.svg";
-import { useState } from "react";
-import useAdmin from "../../hooks/useUser";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useAdmin from "../../hooks/useUser"; // Custom hook for form submission
+import LoadingPage from "../../lodingPage";
+const SignUpForm = () => {
+  const { AddClientDetails, verification, Notification } = useAdmin();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
 
-const SignUpForm = (props) => {
-  // const { handleSubmit, submitting, onSubmit, submitFailed } = props;
-  const { AddClientDetails } = useAdmin();
+    verification();
+    Notification();
+  }, []);
+  // Local state to hold form data
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    mobileNumber: '',
-    email: '',
-    password: '',
-    country: '',
-    city: '',
-    state: '',
+    firstName: "",
+    lastName: "",
+    mobileNumber: "",
+    email: "",
+    password: "",
+    country: "",
+    city: "",
+    state: ""
   });
 
-  const { t } = useTranslation();
+  // Function to handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({
+      ...formData,
+      [name]: value
+    });
   };
-  const handleSubmitt = (e) => {
+
+  
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    AddClientDetails(formData)
+    setLoading(true); 
+    try {
+     
+      const response = await AddClientDetails(formData);
+        if (response.status === 200) {
+          setLoading(false)
+         
+        } else {
+          console.error("failed to create new client:", response);
+        }
+      
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false); 
+    }
   };
-
 
   return (
-    <form
-      onSubmit={handleSubmitt}
-    // className={`needs-validation ${submitFailed ? "was-validated" : ""}`}
+    <div className="container my-4 d-flex justify-content-center  border ">
+       {loading && <LoadingPage />}
+      <div className="col-md-8 col-lg-12 p-4 rounded  " >
+        <form onSubmit={handleSubmit}>
+          <div className="form-group mb-3">
+            <label htmlFor="firstName" className="form-label">First Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              placeholder="Enter First Name"
+              required
+            />
+          </div>
 
-    >
-      <div className="row mb-3">
-        <div className="col-md-6">
-          <Field
-            name="firstName"
-            type="text"
-            label={t("firstName")}  // Translated label
-            component={renderFormField}
-            placeholder={t("firstNamePlaceholder")}
-            validate={[required, name]}
-            required
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="col-md-6">
-          <Field
-            name="lastName"
-            type="text"
-            label={t("lastName")}
-            component={renderFormField}
-            placeholder={t("lastNamePlaceholder")}
-            validate={[required, name]}
-            required
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <div className="row ">
-        <div className="col-md-6">
-          <Field
-            name="mobileNumber"
-            type="number"
-            label={t("mobileNumber")}
-            component={renderFormGroupField}
-            placeholder={t("mobileNumberPlaceholder")}
-            icon={IconPhone}
-            validate={[required, maxLengthMobileNo, minLengthMobileNo, digit]}
-            required
-            max="999999999999999"
-            min="9999"
-            className="mb-3"
-            value={formData.mobileNumber}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="col-md-6">
-          <Field
-            name="email"
-            type="email"
-            label={t("email")}
-            component={renderFormGroupField}
-            placeholder={t("emailPlaceholder")}
-            icon={IconEmail}
-            required
-            value={formData.email}
-            onChange={handleChange}
-            className="mb-3"
-          />
-        </div>
-      </div>
-      <div className="row ">
-        <div className="col-md-6">
-          <Field
-            name="password"
-            type="password"
-            label={t("password")}
-            component={renderFormGroupField}
-            placeholder="******"
-            icon={IconShieldLock}
-            validate={[required, maxLength20, minLength8]}
-            required
-            value={formData.password}
-            onChange={handleChange}
-            maxLength="20"
-            minLength="8"
-            className="mb-3"
-          />
-        </div>
-        <div className="col-md-6">
-          <Field
-            name="city"
-            type="text"
-            label={t("city")}
-            component={renderFormField}
-            placeholder={t("cityPlaceholder")}
-            validate={[required, name]}
-            required
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <div className="row ">
-        <div className="col-md-6">
-          <Field
-            name="state"
-            type="text"
+          {/* Last Name */}
+          <div className="form-group mb-3">
+            <label htmlFor="lastName" className="form-label">Last Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Enter Last Name"
+              required
+            />
+          </div>
 
-            label={t("state")}
-            component={renderFormGroupField}
-            placeholder={t("statePlaceholder")}
-            icon={IconShieldLock}
-            validate={[required, maxLength20, minLength8]}
-            required
-            value={formData.state}
-            onChange={handleChange}
+          {/* Mobile Number */}
+          <div className="form-group mb-3">
+            <label htmlFor="mobileNumber" className="form-label">Mobile Number</label>
+            <input
+              type="tel"
+              className="form-control"
+              id="mobileNumber"
+              name="mobileNumber"
+              value={formData.mobileNumber}
+              onChange={handleChange}
+              placeholder="Enter Mobile Number"
+              required
+            />
+          </div>
 
-            className="mb-3"
-          />
-        </div>
-        <Field
-          name="country"
-          type="text"
-          label={t("country")}
-          component={renderFormField}
-          placeholder={t("countryPlaceholder")}
-          validate={[required, name]}
-          required
-          value={formData.country}
-          onChange={handleChange}
-        />
+          {/* Email */}
+          <div className="form-group mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter Email"
+              required
+            />
+          </div>
+
+          {/* Password */}
+          <div className="form-group mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter Password"
+              required
+            />
+          </div>
+
+          {/* Address Information */}
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label htmlFor="city" className="form-label">City</label>
+              <input
+                type="text"
+                className="form-control"
+                id="city"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="Enter City"
+                required
+              />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label htmlFor="state" className="form-label">State</label>
+              <input
+                type="text"
+                className="form-control"
+                id="state"
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                placeholder="Enter State"
+                required
+              />
+            </div>
+            <div className="col-md-12 mb-3">
+              <label htmlFor="country" className="form-label">Country</label>
+              <input
+                type="text"
+                className="form-control"
+                id="country"
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                placeholder="Enter Country"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button type="submit" className="btn btn-primary w-100 mt-3">
+            Create Account
+          </button>
+
+          {/* Sign In Link */}
+          <div className="text-center mt-4">
+            <Link to="/signin" className="text-decoration-none" >
+              Already have an account? Sign In
+            </Link>
+          </div>
+          <div className="text-center mt-4">
+            <Link to="/" className="text-decoration-none">
+              <button type="button" className="btn btn-secondary">
+                <i className="bi bi-house-fill me-2"></i>
+              </button>
+            </Link>
+          </div>
+        </form>
       </div>
-      <div className="d-grid">
-        <button
-          type="submit"
-          className="btn btn-primary mb-3"
+    </div>
 
 
-        >
-          {t("Create")}
-        </button>
-      </div>
-      <Link className="float-start" to="/account/signin" title="Sign In">
-        {t("signIn")}
-      </Link>
-      <Link
-        className="float-end"
-        to="/account/forgotpassword"
-        title="Forgot Password"
-      >
-        {t("Forgotpassword")}
-      </Link>
-      <div className="clearfix"></div>
-      <hr></hr>
-      <div className="row">
-        <div className="col- text-center">
-          <p className="text-muted small">{t("orJoinWith")}</p>
-        </div>
-        <div className="col- text-center">
-          <Link to="/" className="btn btn-light text-white bg-twitter me-3">
-            <i className="bi bi-twitter-x" />
-          </Link>
-          <Link to="/" className="btn btn-light text-white me-3 bg-facebook">
-            <i className="bi bi-facebook mx-1" />
-          </Link>
-          <Link to="/" className="btn btn-light text-white me-3 bg-google">
-            <i className="bi bi-google mx-1" />
-          </Link>
-        </div>
-      </div>
-    </form>
   );
 };
 
-export default compose(
-  reduxForm({
-    form: "signup",
-  })
-)(SignUpForm);
+export default SignUpForm;

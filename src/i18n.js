@@ -8,7 +8,7 @@ i18n
     resources: {
       en: {
         translation: {
-          "appTitle": "Mahaluxmi Hardware",
+          "appTitle": "Mahalaxmi Hardware",
           "signIn": "Sign In",
           "signUp": "Sign Up",
           "welcomeMessage": "Hello! Please sign in or sign up.",
@@ -18,7 +18,8 @@ i18n
           "blog": "Blog",
           "blogDetail": "Blog Detail",
           "buildingMaterial": "Building Material",
-          "plumbing": "Plumbing",
+          "billing": "Billing",
+          "billingdata":"Billingdata",
           "electronics": "Electronics",
           "addProduct": "Add Product",
           "View": "View Products",
