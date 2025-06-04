@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Field, reduxForm } from "redux-form";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
@@ -7,15 +7,33 @@ import {
   required,
   maxLength20,
   minLength8,
-  maxLengthMobileNo,
-  minLengthMobileNo,
-  digit,
 } from "../../helpers/validation";
-import { ReactComponent as IconPhone } from "bootstrap-icons/icons/phone.svg";
 import { ReactComponent as IconShieldLock } from "bootstrap-icons/icons/shield-lock.svg";
+import { ReactComponent as IconEmail } from "bootstrap-icons/icons/envelope.svg";
+import useAdmin from './../../hooks/useUser';
+import { useTranslation } from "react-i18next";
 
 const SignInForm = (props) => {
   const { handleSubmit, submitting, onSubmit, submitFailed } = props;
+  const { t } = useTranslation();
+  const{Login}=useAdmin();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+   
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+ const handleSubmitt = (e) => {
+    e.preventDefault();
+    console.log('Form data:', formData);
+   Login(formData)
+  };
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -23,27 +41,28 @@ const SignInForm = (props) => {
       noValidate
     >
       <Field
-        name="mobileNo"
-        type="number"
-        label="Mobile no"
+        name="email"
+        type="email"
+        label={t("email")}
         component={renderFormGroupField}
-        placeholder="Mobile no without country code"
-        icon={IconPhone}
-        validate={[required, maxLengthMobileNo, minLengthMobileNo, digit]}
+        placeholder={t("emailPlaceholder")}
+        icon={IconEmail}
         required={true}
-        max="999999999999999"
-        min="9999"
+        value={formData.email}
+        onChange={handleChange}
         className="mb-3"
       />
       <Field
         name="password"
         type="password"
-        label="Your password"
+        label={t("password")}
         component={renderFormGroupField}
         placeholder="******"
         icon={IconShieldLock}
         validate={[required, maxLength20, minLength8]}
         required={true}
+        value={formData.password}
+        onChange={handleChange}
         maxLength="20"
         minLength="8"
         className="mb-3"
@@ -53,6 +72,7 @@ const SignInForm = (props) => {
           type="submit"
           className="btn btn-primary mb-3"
           disabled={submitting}
+          onClick={handleSubmitt}
         >
           Log In
         </button>

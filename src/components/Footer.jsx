@@ -24,10 +24,10 @@ const Footer = () => {
       <div className="container-fluid bg-dark text-white">
         <div className="row ">
           <div className="col-md-3 py-3">
-            <div className="h6">Mahalaxmi Hardwere</div>
+            <div className="h6">Mahaluxmi Hardwere</div>
             <hr />
             <p>
-              Welcome to Mahalaxmi Hardware Shop, your one-stop destination for all your hardware needs. We offer a wide range of high-quality tools, building materials, and home improvement products at competitive prices.
+            Welcome to Mahaluxmi Hardware Shop, your one-stop destination for all your hardware needs. We offer a wide range of high-quality tools, building materials, and home improvement products at competitive prices.
             </p>
           </div>
           <div className="col-md-3 py-3">
@@ -36,55 +36,46 @@ const Footer = () => {
             <ul className="list-group list-group-flush">
               <li className="list-group-item bg-dark text-white border-light">
                 <Link
-                  to="/tools"
+                  to="/"
                   className="text-decoration-none text-white stretched-link"
                 >
-                  Tools
+                  Electronics
                 </Link>
               </li>
               <li className="list-group-item bg-dark text-white border-light">
                 <Link
-                  to="/fasteners"
+                  to="/"
                   className="text-decoration-none text-white stretched-link"
                 >
-                  Fasteners
+                  Mobiles
                 </Link>
               </li>
               <li className="list-group-item bg-dark text-white border-light">
                 <Link
-                  to="/paint"
+                  to="/"
                   className="text-decoration-none text-white stretched-link"
                 >
-                  Paints & Coatings
+                  Car & bike
                 </Link>
               </li>
               <li className="list-group-item bg-dark text-white border-light">
                 <Link
-                  to="/lumber"
+                  to="/"
                   className="text-decoration-none text-white stretched-link"
                 >
-                  Lumber & Building Materials
+                  Super Market
                 </Link>
               </li>
               <li className="list-group-item bg-dark text-white border-light">
                 <Link
-                  to="/plumbing"
+                  to="/"
                   className="text-decoration-none text-white stretched-link"
                 >
-                  Plumbing Supplies
-                </Link>
-              </li>
-              <li className="list-group-item bg-dark text-white border-light">
-                <Link
-                  to="/electrical"
-                  className="text-decoration-none text-white stretched-link"
-                >
-                  Electrical Supplies
+                  Travel Cards
                 </Link>
               </li>
             </ul>
           </div>
-
           <div className="col-md-3 py-3">
             <div className="h6">Policy</div>
             <hr />
@@ -137,11 +128,11 @@ const Footer = () => {
             <address>
               <strong>Instagram.</strong>
               <br />
-              Mahalaxmi Hardwere
+              Mahaluxmi Hardwere
               <br />
               Kalmadu Pin Code is 424106.
               <br />
-              <abbr title="Phone">Phone:</abbr>9730183353
+              <abbr title="Phone">Phone:</abbr>9730183353  
             </address>
             <div className="h6">Customer Care</div>
             <hr />
@@ -169,8 +160,8 @@ const Footer = () => {
             </Link>
           </div>
           <div className="col-md-3 py-2">
-            © 2016-{new Date().getFullYear()} malaluxmi hardwere.com
-
+            © 2016-{new Date().getFullYear()} malaluxmi hardwere.com 
+           
           </div>
           <div className="col-md-3 py-2 bg-white">
             <img

@@ -74,7 +74,7 @@ const Invoice = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="col-3">T-shirts</td>
+                      <td className="col-3">plumbing material</td>
                       <td className="col-4 text-1">
                         Maecenas suscipit volutpat gravida. Nulla hendrerit nisi
                         a lectus blandit aliquam. Integer enim magna, consequat

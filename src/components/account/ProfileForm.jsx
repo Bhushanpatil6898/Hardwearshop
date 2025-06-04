@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Field, reduxForm } from "redux-form";
 import { compose } from "redux";
 import renderFormGroupField from "../../helpers/renderFormGroupField";
@@ -16,8 +16,10 @@ import { ReactComponent as IconPhone } from "bootstrap-icons/icons/phone.svg";
 import { ReactComponent as IconEnvelop } from "bootstrap-icons/icons/envelope.svg";
 import { ReactComponent as IconGeoAlt } from "bootstrap-icons/icons/geo-alt.svg";
 import { ReactComponent as IconCalendarEvent } from "bootstrap-icons/icons/calendar-event.svg";
+import useAdmin from "../../hooks/useUser";
 
 const ProfileForm = (props) => {
+  const{ProfileDetails,userData}=useAdmin();
   const {
     handleSubmit,
     submitting,
@@ -26,6 +28,54 @@ const ProfileForm = (props) => {
     onImageChange,
     imagePreview,
   } = props;
+
+  useEffect(() => {
+    ProfileDetails();
+    
+  }, []);
+  
+
+  const [userDatas, setUserDatas] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    mobileNumber: '',
+    role: 'client',
+    city: '',
+    state: '',
+    country: '',
+  });
+  useEffect(() => {
+   setUserDatas({
+    firstName:userData?.firstName,
+    lastName:userData?.lastName,
+    email:userData?.email,
+    password: '',
+    mobileNumber: '',
+    role: 'client',
+    city: '',
+    state: '',
+    country: '',
+   })
+  }, [userData]);
+  
+  console.log(userData?.firstName);
+ console.log(userDatas);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserDatas({
+      ...userDatas,
+      [name]: value,
+    });
+  };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('User Data:', userData);
+  //   // You can now send this data to your backend or use it as needed
+  // };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -62,6 +112,7 @@ const ProfileForm = (props) => {
               component={renderFormGroupField}
               placeholder="Your name"
               icon={IconPerson}
+           value={userDatas.firstName}
               validate={[required, name]}
               required={true}
             />

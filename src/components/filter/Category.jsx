@@ -13,38 +13,50 @@ const FilterCategory = (props) => {
       >
         Categories
       </div>
-      <ul
-        className="list-group list-group-flush show"
-        id="filterCategory"
-      >
-        <li className="list-group-item">
+      <ul className="list-group list-group-flush show" id="filterCategory">
+      <li className="list-group-item">
           <Link to="/" className="text-decoration-none stretched-link">
-            Clothing
+            Nuts & Bolts
           </Link>
         </li>
         <li className="list-group-item">
           <Link to="/" className="text-decoration-none stretched-link">
-            Leather Bag
+            Cement
           </Link>
         </li>
         <li className="list-group-item">
           <Link to="/" className="text-decoration-none stretched-link">
-            Trausers
+            Agricultural Tools
           </Link>
         </li>
         <li className="list-group-item">
           <Link to="/" className="text-decoration-none stretched-link">
-            Sweater & Cardigans
+            Building Materials
           </Link>
         </li>
         <li className="list-group-item">
           <Link to="/" className="text-decoration-none stretched-link">
-            High Heels
+            Plumbing Supplies
           </Link>
         </li>
         <li className="list-group-item">
           <Link to="/" className="text-decoration-none stretched-link">
-            Coats & Jackets
+            Electrical Tools
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/" className="text-decoration-none stretched-link">
+            Paint & Finishing Supplies
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/" className="text-decoration-none stretched-link">
+            Hand Tools
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/" className="text-decoration-none stretched-link">
+            Power Tools
           </Link>
         </li>
       </ul>

@@ -63,8 +63,8 @@ class ProductListView extends Component {
           }}
         >
           <div className="container text-center">
-            <span className="display-5 px-3 bg-white rounded shadow">
-              T-Shirts
+            <span className="display-5 px-3  rounded shadow">
+          Mahaluxmi Hardwear
             </span>
           </div>
         </div>
@@ -74,9 +74,9 @@ class ProductListView extends Component {
             <div className="col-md-3">
               <FilterCategory />
               <FilterPrice />
-              <FilterSize />
-              <FilterStar />
-              <FilterColor />
+              {/* <FilterSize /> */}
+              {/* <FilterStar /> */}
+              {/* <FilterColor /> */}
               <FilterClear />
               <FilterTag />
               <CardServices />
@@ -86,7 +86,7 @@ class ProductListView extends Component {
                 <div className="col-7">
                   <span className="align-middle fw-bold">
                     {this.state.totalItems} results for{" "}
-                    <span className="text-warning">"t-shirts"</span>
+                    <span className="text-warning">"plumbing material"</span>
                   </span>
                 </div>
                 <div className="col-5 d-flex justify-content-end">

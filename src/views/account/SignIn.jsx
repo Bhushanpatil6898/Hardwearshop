@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 const SignInForm = lazy(() => import("../../components/account/SignInForm"));
 
@@ -6,6 +7,7 @@ const SignInView = () => {
   const onSubmit = async (values) => {
     alert(JSON.stringify(values));
   };
+  const { t } = useTranslation();
   return (
     <div className="container my-3">
       <div className="row border">
@@ -26,7 +28,7 @@ const SignInView = () => {
           </Link>
         </div>
         <div className="col-md-6 p-3">
-          <h4 className="text-center">Sign In</h4>
+          <h4 className="text-center"> {t("signIn")}</h4>
           <SignInForm onSubmit={onSubmit} />
         </div>
       </div>

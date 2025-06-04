@@ -85,3 +85,8 @@
 .accordion-icon-button.collapsed {
   border-bottom: none;
 }
+
+.top-right {
+  top: 0;
+  right: 0;
+}

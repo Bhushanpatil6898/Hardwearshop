@@ -18,10 +18,10 @@ const FilterPrice = (props) => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="flexCheckDefault1"
+              id="priceRange1"
             />
-            <label className="form-check-label" htmlFor="flexCheckDefault1">
-              $24.00 - $29.00 <span className="text-muted">(4)</span>
+            <label className="form-check-label" htmlFor="priceRange1">
+              1.00 - 100.00 <span className="text-muted">(10)</span>
             </label>
           </div>
         </li>
@@ -30,10 +30,10 @@ const FilterPrice = (props) => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="flexCheckDefault2"
+              id="priceRange2"
             />
-            <label className="form-check-label" htmlFor="flexCheckDefault2">
-              $33.00 - $35.00 <span className="text-muted">(2)</span>
+            <label className="form-check-label" htmlFor="priceRange2">
+              100.00 - 300.00 <span className="text-muted">(8)</span>
             </label>
           </div>
         </li>
@@ -42,10 +42,46 @@ const FilterPrice = (props) => {
             <input
               className="form-check-input"
               type="checkbox"
-              id="flexCheckDefault3"
+              id="priceRange3"
             />
-            <label className="form-check-label" htmlFor="flexCheckDefault3">
-              $70.00 - $99.00 <span className="text-muted">(5)</span>
+            <label className="form-check-label" htmlFor="priceRange3">
+              300.00 - 600.00 <span className="text-muted">(6)</span>
+            </label>
+          </div>
+        </li>
+        <li className="list-group-item">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="priceRange4"
+            />
+            <label className="form-check-label" htmlFor="priceRange4">
+              600.00 - 1,500.00 <span className="text-muted">(4)</span>
+            </label>
+          </div>
+        </li>
+        <li className="list-group-item">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="priceRange5"
+            />
+            <label className="form-check-label" htmlFor="priceRange5">
+              1,500.00 - 3,000.00 <span className="text-muted">(3)</span>
+            </label>
+          </div>
+        </li>
+        <li className="list-group-item">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="priceRange6"
+            />
+            <label className="form-check-label" htmlFor="priceRange6">
+              3,000.00 & Above <span className="text-muted">(2)</span>
             </label>
           </div>
         </li>
