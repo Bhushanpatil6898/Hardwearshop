@@ -88,14 +88,13 @@ const Chatbox = () => {
         setMessages((prev) => [...prev, userMessage]);
         setInput("");
         setLoading(true);
-
+        const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
         try {
             const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                 method: "POST",
                 headers: {
-                    Authorization:
-                        "Bearer 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",
-                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${apiKey}`,
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     model: "deepseek/deepseek-r1:free",
@@ -159,7 +158,7 @@ const Chatbox = () => {
                         </ListGroup.Item>
                     ))}
 
-                   
+
                     {botTyping && (
                         <ListGroup.Item className="d-flex justify-content-start">
                             <div

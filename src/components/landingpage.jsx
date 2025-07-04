@@ -23,6 +23,8 @@ const LandingPage = () => {
         verification();
 
     }, []);
+     const apiKey = process.env.REACT_APP_API_KEY;
+console.log("API Key:", apiKey);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
