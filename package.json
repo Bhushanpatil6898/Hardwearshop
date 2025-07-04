@@ -70,6 +70,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "surge": "^0.23.1"
+    "surge": "^0.23.1",
+    "typescript": "^5.8.3"
   }
 }

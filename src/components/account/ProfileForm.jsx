@@ -29,7 +29,6 @@ const ProfileForm = () => {
   useEffect(() => {
     ProfileDetails();
   }, []);
-//const BaseURL="https://m-server-5449.onrender.com"
   useEffect(() => {
     if (userData) {
       setUserDatas({
@@ -43,7 +42,7 @@ const ProfileForm = () => {
         state: userData?.state || '',
         country: userData?.country || '',
       });
-      setImagePreview(userData?.profileImage ?  `${BaseURL}/${userData.profileImage}?t=${new Date().getTime()}`  : "../../images/NO_IMG.png");
+      setImagePreview(userData?.profileImage ?  `${userData.profileImage}?t=${new Date().getTime()}`  : "../../images/NO_IMG.png");
     }
   }, [userData]);
   console.log(userData);
