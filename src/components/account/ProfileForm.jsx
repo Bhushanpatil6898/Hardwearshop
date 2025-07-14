@@ -7,21 +7,20 @@ import useAdmin from "../../hooks/useUser";
 import { BaseURL } from "../../repository/repository";
 
 const ProfileForm = () => {
-  const { ProfileDetails, userData,verification,updateprofile} = useAdmin();
+  const { ProfileDetails, userData, verification, updateprofile } = useAdmin();
   useEffect(() => {
-   
     verification();
   }, []);
   const [userDatas, setUserDatas] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    mobileNumber: '',
-    role: 'client',
-    city: '',
-    state: '',
-    country: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    mobileNumber: "",
+    role: "client",
+    city: "",
+    state: "",
+    country: "",
   });
   const [imagePreview, setImagePreview] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -32,21 +31,24 @@ const ProfileForm = () => {
   useEffect(() => {
     if (userData) {
       setUserDatas({
-        firstName: userData?.firstName || '',
-        lastName: userData?.lastName || '',
-        email: userData?.email || '',
-        password: '',
-        mobileNumber: userData?.mobileNumber || '',
-        role: userData?.role || 'client',
-        city: userData?.city || '',
-        state: userData?.state || '',
-        country: userData?.country || '',
+        firstName: userData?.firstName || "",
+        lastName: userData?.lastName || "",
+        email: userData?.email || "",
+        password: "",
+        mobileNumber: userData?.mobileNumber || "",
+        role: userData?.role || "client",
+        city: userData?.city || "",
+        state: userData?.state || "",
+        country: userData?.country || "",
       });
-      setImagePreview(userData?.profileImage ?  `${userData.profileImage}?t=${new Date().getTime()}`  : "../../images/NO_IMG.png");
+      setImagePreview(
+        userData?.profileImage
+          ? `${userData.profileImage}?t=${new Date().getTime()}`
+          : "../../images/NO_IMG.png"
+      );
     }
   }, [userData]);
   console.log(userData);
-  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -58,53 +60,49 @@ const ProfileForm = () => {
 
   const [profileImage, setProfileImage] = useState(null); // Keep a reference to the file
 
-const handleImageChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    setProfileImage(file); // Store the file reference
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(file);
-  }
-};
-
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    // Create form data object
-    const formData = new FormData();
-    formData.append("firstName", userDatas.firstName);
-    formData.append("lastName", userDatas.lastName);
-    formData.append("email", userDatas.email);
-    formData.append("mobileNumber", userDatas.mobileNumber);
-    formData.append("role", userDatas.role);
-    formData.append("city", userDatas.city);
-    formData.append("state", userDatas.state);
-    formData.append("country", userDatas.country);
-    
-    // Append the actual file instead of imagePreview
-    if (profileImage) {
-      formData.append("image", profileImage);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfileImage(file); // Store the file reference
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
+  };
 
-    // Call your update profile API
-    const response = await updateprofile(formData);
-    if (response && response.user) {
-     
-      setImagePreview(`${BaseURL}${response.user.profileImage}`);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Create form data object
+      const formData = new FormData();
+      formData.append("firstName", userDatas.firstName);
+      formData.append("lastName", userDatas.lastName);
+      formData.append("email", userDatas.email);
+      formData.append("mobileNumber", userDatas.mobileNumber);
+      formData.append("role", userDatas.role);
+      formData.append("city", userDatas.city);
+      formData.append("state", userDatas.state);
+      formData.append("country", userDatas.country);
+
+      // Append the actual file instead of imagePreview
+      if (profileImage) {
+        formData.append("image", profileImage);
+      }
+
+      // Call your update profile API
+      const response = await updateprofile(formData);
+      if (response && response.user) {
+        setImagePreview(response.user.profileImage);
+      }
+    } catch (error) {
+      console.error("Error updating profile", error);
     }
-  } catch (error) {
-    console.error("Error updating profile", error);
-  }
-};
-
-
+  };
 
   return (
-    <form  className="container">
+    <form className="container">
       <div className="card border-primary my-4">
         <h6 className="card-header bg-primary text-white">
           <i className="bi bi-person-lines-fill" /> Profile Detail
@@ -254,7 +252,7 @@ const handleSubmit = async (e) => {
           <button
             type="submit"
             className="btn btn-primary"
-           onClick={handleSubmit}
+            onClick={handleSubmit}
           >
             Submit
           </button>
